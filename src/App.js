@@ -1,23 +1,23 @@
 import './App.css';
+import { useContext } from 'react';
 import MainPage from './components/MainPage';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
-import {
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  useLocation,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import { ReferenceDataContext } from './context/ContextFile';
+import { ReferenceDataContextProvider } from './context/ContextFile';
 function App() {
+  // const { unicornTypes } = useContext(ReferenceDataContext)
+
+
   return (
-    <>
-      <MainPage/>
-    
-    </>
-  );
+
+      <ReferenceDataContextProvider>
+
+        <MainPage/>
+
+       </ReferenceDataContextProvider>
+
+  )
 }
 
 export default App;

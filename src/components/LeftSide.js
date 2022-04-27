@@ -12,29 +12,72 @@ import { IconButton } from "@mui/material";
 import { Typography } from "@mui/material";
 // import Context from "@mui/base/TabsUnstyled/TabsContext";
 import Context from "./BottomSection";
+import { Data, ReferenceDataContext, ShowContext } from "../context/ContextFile";
+
 export default function BasicList() {
-    // const {context, setContext} = useContext(Context)
-// const  handleeditButton = ()=>{
-//       setContext(true)
-// }
-// console.log(context)
+  const { unicornTypes, setUnicornTypes } = useContext(ReferenceDataContext)
+  const {show,setshow} = useContext(ShowContext)
+  const {data , setdata } =  useContext(Data)
+const  handleeditButton = ()=>{
+      setUnicornTypes(true)
+      setshow(false)
+}
+const handleshowButton = ()=>{
+  setshow (true)
+  setUnicornTypes(false)
+}
+const handledeleteButton = (e) => {
+  
+ };
+ const filter = data.filter(res=>res.skills=="web design")
+ 
+console.log(filter)
   return (
     <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+      
       <Typography variant="h5" component="h2">
        WebDesign
       </Typography>
       <nav aria-label="main mailbox folders">
+        
         <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="html" />
+        {filter.map(res=>{
+        <ListItem  disablePadding>
+        <ListItemButton >
+          <ListItemText onClick={handleshowButton} primary={res.title} />
+          <ListItemIcon>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              sx={{ mr: 2 }}
+             onClick={handleeditButton}
+            >
+              <ModeEditIcon />
+            </IconButton>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              sx={{ mr: 2 }}
+              onClick={handledeleteButton}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemIcon>
+        </ListItemButton>
+      </ListItem>
+      })}
+          <ListItem  disablePadding>
+            <ListItemButton >
+              <ListItemText onClick={handleshowButton} primary="html" />
               <ListItemIcon>
                 <IconButton
                   size="large"
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
-                //  onClick={handleeditButton()}
+                 onClick={handleeditButton}
                 >
                   <ModeEditIcon />
                 </IconButton>
@@ -43,6 +86,7 @@ export default function BasicList() {
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
+                  onClick={handledeleteButton}
                 >
                   <DeleteIcon />
                 </IconButton>
@@ -51,13 +95,14 @@ export default function BasicList() {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="css" />
+              <ListItemText onClick={handleshowButton} primary="css" />
               <ListItemIcon>
                 <IconButton
                   size="large"
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
+                  onClick={handleeditButton}
                 >
                   <ModeEditIcon />
                 </IconButton>
@@ -81,14 +126,14 @@ export default function BasicList() {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="react" />
+              <ListItemText onClick={handleshowButton} primary="react" />
               <ListItemIcon>
                 <IconButton
                   size="large"
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
-                //  onClick={handleeditButton()}
+                 onClick={handleeditButton}
                 >
                   <ModeEditIcon />
                 </IconButton>
@@ -105,13 +150,14 @@ export default function BasicList() {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="javascript" />
+              <ListItemText onClick={handleshowButton} primary="javascript" />
               <ListItemIcon>
                 <IconButton
                   size="large"
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
+                  onClick={handleeditButton}
                 >
                   <ModeEditIcon />
                 </IconButton>
@@ -135,14 +181,14 @@ export default function BasicList() {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="node" />
+              <ListItemText onClick={handleshowButton} primary="node" />
               <ListItemIcon>
                 <IconButton
                   size="large"
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
-                //  onClick={handleeditButton()}
+                 onClick={handleeditButton}
                 >
                   <ModeEditIcon />
                 </IconButton>
@@ -159,13 +205,14 @@ export default function BasicList() {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="mongodb" />
+              <ListItemText onClick={handleshowButton} primary="mongodb" />
               <ListItemIcon>
                 <IconButton
                   size="large"
                   edge="start"
                   color="inherit"
                   sx={{ mr: 2 }}
+                  onClick={handleeditButton}
                 >
                   <ModeEditIcon />
                 </IconButton>

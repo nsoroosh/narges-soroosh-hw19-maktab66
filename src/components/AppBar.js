@@ -22,7 +22,7 @@ import { styled } from "@mui/material/styles";
 import { orange, purple } from "@mui/material/colors";
 import { Data } from "../context/ContextFile";
 import { useContext } from "react";
-
+import { Link, Outlet } from "react-router-dom";
 const style = {
   position: "absolute",
   top: "50%",
@@ -96,8 +96,9 @@ export default function ButtonAppBar() {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem>login</MenuItem>
-            <MenuItem onClick={handleClose}>Dashboard</MenuItem>
+            <MenuItem><Link to="/login">login</Link></MenuItem>
+            <MenuItem ><Link to="/dashboard">Dashboard</Link></MenuItem>
+            <Outlet/>
           </Menu>
           <Container sx={{ flexGrow: 1, textAlign: "center" }}>
             <Typography variant="h7" component="h6">

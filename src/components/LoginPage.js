@@ -1,34 +1,30 @@
-// import React from 'react'
+import AuthUser from "../context/AuthContext";
+import { useNavigate,
+useLocation,
+Outlet
+} from "react-router-dom";
 
-// export default function LoginPage() {
-//     let navigate = useNavigate();
-//     let location = useLocation();
-//     let auth = useAuth();
+
+const Login = () => {
+    const navigate = useNavigate();
+    const { login } = AuthUser();
+    const { state } = useLocation();
   
-//     let from = location.state?.from?.pathname || "/";
+    const handleLogin = () => {
+      login().then(() => {
+        navigate(state?.path || "/dashboard");
+      });
+    };
   
-//     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-//       event.preventDefault();
-  
-//       let formData = new FormData(event.currentTarget);
-//       let username = formData.get("username") as string;
-  
-//       auth.signin(username, () => {
-        
-//         navigate(from, { replace: true });
-//       });
-//     }
-  
-//     return (
-//       <div>
-//         <p>You must log in to view the page at {from}</p>
-  
-//         <form onSubmit={handleSubmit}>
-//           <label>
-//             Username: <input name="username" type="text" />
-//           </label>{" "}
-//           <button type="submit">Login</button>
-//         </form>
-//       </div>
-//     );
-// }
+    return (
+      <div>
+        <h1>Login</h1>
+        <label htmlFor="text">user name:</label>
+        <input type={"text"} />
+        <label htmlFor="password">password:</label>
+        <input type={"password"}/>
+        <button onClick={handleLogin}>Log in</button>
+      </div>
+    );
+  }
+  export default Login
